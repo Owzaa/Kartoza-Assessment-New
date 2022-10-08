@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Kartoza - Portfolio {% endblock %}</title>
+</head>
+<body>
+{% block navBar %}
+<!--Navigation-->    
+<center>
+
+<div class="navbar">
+<div class="content">
+
+<!--Links-->
+<ul class="NavLinkContainer">
+
+<li>
+<a class="link" href="{% url 'map' %}">Map</a>    
+</li>
+<li>
+<a class="link" href="{% url 'profileDetails' %}">Profile</a>    
+</li>
+<li>
+<a class="link" href="{% url 'admin' %}">login</a>    
+</li>
+<li>
+<a class="link" href="{% url 'logout' %}"> Hi! {{ user.username }} logout</a>    
+</li>
+
+
+</ul>
+<!--Ending Links-->
+
+</div>
+</div>
+</center>
+
+<!--Ending Navigation-->
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>
