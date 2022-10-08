@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
-
+from profiles.models import  UserProfile
 
 # Home == function of index()
 def index(request):
@@ -18,31 +18,39 @@ def mapDetails(request):
     
 # Login-user
 def loginView(request):
-    if request.method == "POST":
-        form = AuthenticationForm(request, data= request.POST)
-        if form.is_valid():
-            username =form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
-            if user != None:
-                login(request, user)
-                messages.info(request, f"Logged in as {{username}}")
-                return render(request,'index.html')
+    if request.user.is_authenticated:
+        return redirect("/")
+    else:
+        if request.method == "POST":
+            form = AuthenticationForm(request, data= request.POST)
+            if form.is_valid():
+                username =form.cleaned_data.get('username')
+                password = form.cleaned_data.get('password')
+                user = authenticate(username=username, password=password)
+                if user != None:
+                    user1 = UserProfile.objects.get(user=user)
+                    if user1.username == 'user':
+                        login(request, user)
+                        messages.info(request, f"Logged in as {{username}}")
+                        return render(request,'index.html')
+                    else:
+                        messages.error(request, "Invalid username or password")
             else:
-                messages.error(request, "Invalid username or password")
-        else:
-            messages.error(request,"Please kindly check username or password is registered")
-    form = AuthenticationForm()
+                messages.error(request,"Please kindly check username or password is registered")
+        form = AuthenticationForm()
     return render (request=request, template_name="admin/")
 
 # Logout-user
-def signUp(request):
+def signOut(request):
     logout(request)
     messages.info(request,"You've been successfully logged out")
     return render(request,'admin/')
 
 # Sign-up user
-
+def sign__up(request):
+    title = "Sign-up User Profile"
+    return render(request,"")
+    
 
 
 

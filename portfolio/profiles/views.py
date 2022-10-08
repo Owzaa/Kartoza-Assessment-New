@@ -19,4 +19,4 @@ def editProfile(request,userProfile_id):
     title = "User-Profile-Edit"
     return render(request,"profile-edit.html",
     context={'title':title,'editprof':editPrf})
-    
+
