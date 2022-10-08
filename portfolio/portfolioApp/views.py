@@ -49,7 +49,7 @@ def signOut(request):
 # Sign-up user
 def sign__up(request):
     title = "Sign-up User Profile"
-    return render(request,"")
+    return render(request,"login/sign_up.html",context={'title':title})
     
 
 

@@ -79,11 +79,14 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 
 DATABASES = {
-'default': {
-'ENGINE': 'django.contrib.gis.db.backends.postgis',
-'NAME': 'geodjango',
-'USER': 'geo',
-},
+    'default': {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'gis',
+        'USER': 'user001',
+        'PASSWORD': '123456789',
+        'HOST': 'localhost',
+        'PORT': '5432'
+    }
 }
 
 # Password validation
