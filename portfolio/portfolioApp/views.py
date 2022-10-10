@@ -3,12 +3,18 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from profiles.models import  UserProfile
-from geopy.geocoders import Nominatim
 import time
-from pprint import pprint
+import geopy.exc as geopyexceptions
+from geopy.geocoders import Nominatim
+from geopy.extra.rate_limiter import RateLimiter
 
 # instantiate a new Nominatim client
-app = Nominatim(user_agent="portfolio")
+geolocator = Nominatim(user_agent="portfolioApp")
+
+def __init__(self):
+    self.home_address = {}
+    self.location = {}
+    UserProfile.get_deferred_fields(self)    
 
 # Home == function of index()
 def index(request):
@@ -16,31 +22,55 @@ def index(request):
     return render(request,'index.html',
     context={'title':title})
 
-def get_location_by_address(address):
-    """This function returns a location as raw from an address
-    will repeat until success"""
+# GET: address then passing it into location PointField()
+def get_address(place):
+    geolocator = Nominatim(user_agent="conrad")
+    geocode = RateLimiter(geolocator.geocode, min_delay_seconds=5)
+
+    address = None
+    try:
+        location = geolocator.geocode(place)
+        if location is not None:
+            address = geolocator.reverse(
+                "{lat}, {lon}".format(lat=location.latitude, lon=location.longitude)
+            ).raw["address"]
+            address["latitude"] = location.latitude
+            address["longitude"] = location.longitude
+    except geopyexceptions.GeocoderTimedOut:
+        # TODO: add 2 retries using tenacity
+        print(f"Geocoder timed out for {place}!")
+
+    return address
+
+"""
+    The following function reverses the coordinates 
+    along with respecting Nominatim
+    
+"""
+
+def get_location(latitude, longitude, language="en"):
+    """
+    This function returns an address as raw from a location
+    will repeat until success
+
+    """
+    # build coordinates string to pass to reverse() function
+    coordinates = f"{latitude}, {longitude}"
+    # sleep for a second to respect Usage Policy
     time.sleep(1)
     try:
-        return app.geocode(address,location).raw
+        return geolocator.reverse(coordinates, language=language)
     except:
-        return get_location_by_address(address)  
-
-
-address = UserProfile.home_address
-location = get_location_by_address(address)
-latitude = location["lat"]
-longitude = location["lon"]
-
+        return get_location(latitude, longitude)
 
 
 # Mapping userProfile to map 
 def mapDetails(request):
-    title = "Screen Map Details"
-    
+    title = "Screen Map Details"   
     return render(request,'map/mapDetail.html',
     context={'title':title})
     
-# Login-user
+# User_LoginAuthetication
 def loginView(request):
     if request.user.is_authenticated:
         return redirect("/")
