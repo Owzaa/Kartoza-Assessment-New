@@ -1,6 +1,5 @@
-from django.contrib.gis.db import models
 from django.contrib.auth.models import User
-
+from django.db import models
 # Extending UserModul via our models.
 class UserProfile(models.Model):
    
@@ -9,9 +8,5 @@ class UserProfile(models.Model):
     last_name = models.CharField(max_length=100)     
     home_address = models.CharField(max_length=250)
     phone_number = models.CharField(max_length=10)
-    location = models.PointField() 
-
+    location = models.CharField()  
          
-# return userProfile name as string     
-def __str__(self):
-        return self.username

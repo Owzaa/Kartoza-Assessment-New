@@ -3,6 +3,12 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from profiles.models import  UserProfile
+from geopy.geocoders import Nominatim
+import time
+from pprint import pprint
+
+# instantiate a new Nominatim client
+app = Nominatim(user_agent=[])
 
 # Home == function of index()
 def index(request):
@@ -10,9 +16,19 @@ def index(request):
     return render(request,'index.html',
     context={'title':title})
 
+def get_location_by_address(address):
+    """This function returns a location as raw from an address
+    will repeat until success"""
+    time.sleep(1)
+    try:
+        return app.geocode(address).raw
+    except:
+        return get_location_by_address(address)  
+
 # Mapping userProfile to map 
 def mapDetails(request):
     title = "Screen Map Details"
+    
     return render(request,'map/mapDetail.html',
     context={'title':title})
     
