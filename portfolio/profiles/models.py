@@ -8,5 +8,5 @@ class UserProfile(models.Model):
     last_name = models.CharField(max_length=100)     
     home_address = models.CharField(max_length=250)
     phone_number = models.CharField(max_length=10)
-    location = models.CharField()  
+    location = models.FloatField()  
          

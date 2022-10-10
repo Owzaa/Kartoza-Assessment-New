@@ -8,7 +8,7 @@ import time
 from pprint import pprint
 
 # instantiate a new Nominatim client
-app = Nominatim(user_agent=[])
+app = Nominatim(user_agent="portfolio")
 
 # Home == function of index()
 def index(request):
@@ -21,9 +21,17 @@ def get_location_by_address(address):
     will repeat until success"""
     time.sleep(1)
     try:
-        return app.geocode(address).raw
+        return app.geocode(address,location).raw
     except:
         return get_location_by_address(address)  
+
+
+address = UserProfile.home_address
+location = get_location_by_address(address)
+latitude = location["lat"]
+longitude = location["lon"]
+
+
 
 # Mapping userProfile to map 
 def mapDetails(request):
