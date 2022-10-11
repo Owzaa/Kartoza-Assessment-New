@@ -4,6 +4,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from profiles.models import  UserProfile
 import time
+from django.contrib.auth.decorators import login_required,permission_required
 
 
 # instantiate a new Nominatim client
@@ -62,6 +63,10 @@ def get_location(latitude, longitude, language="en"):
 
 
 # Mapping userProfile to map 
+"""
+PERMISSION 
+"""
+@login_required(login_url="loginView/")
 def mapDetails(request):
     title = "Screen Map Details"   
     return render(request,'map/mapDetail.html',
@@ -70,7 +75,7 @@ def mapDetails(request):
 # User_LoginAuthetication
 def loginView(request):
     if request.user.is_authenticated:
-        return redirect("")
+        return redirect("home/")
     else:
         if request.method == "POST":
             form = AuthenticationForm(request, data= request.POST)
@@ -82,6 +87,8 @@ def loginView(request):
                     user1 = UserProfile.objects.get(user=user)
                     if user1.username == 'user':
                         login(request, user)
+                            #Session Activity Log Request for Our Admin Log HISTORY
+                        request.session['user_id'] = user
                         messages.info(request, f"Logged in as {{username}}")
                         return render(request,'index.html')
                     else:
@@ -94,11 +101,15 @@ def loginView(request):
 # Logout-user
 def signOut(request):
     logout(request)
+    try:
+        del request.session['user_id']
+    except KeyError:
+        pass
     messages.info(request,"You've been successfully logged out")
     return render(request,'admin/')
 
 # Sign-up user
-def sign__up(request):
+def signUp(request):
     title = "Sign-up User Profile"
     return render(request,"login/sign_up.html",context={'title':title})
     
