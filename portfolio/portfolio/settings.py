@@ -45,7 +45,7 @@ INSTALLED_APPS = [
 # Providing GOOGLE API KEY for our Map
 LOCATION_FIELD = {
     'provider.google.api': '//maps.google.com/maps/api/js?sensor=false',
-    'provider.google.api_key': '',
+    'provider.google.api_key': 'AIzaSyAM4b7meAe_7TiZX7qiypk-zTWHPFD97KU',
     'provider.google.api_libraries': '',
     'provider.google.map.type': 'ROADMAP',
 }
