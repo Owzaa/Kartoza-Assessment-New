@@ -4,12 +4,9 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from profiles.models import  UserProfile
 import time
-import geopy.exc as geopyexceptions
-from geopy.geocoders import Nominatim
-from geopy.extra.rate_limiter import RateLimiter
+
 
 # instantiate a new Nominatim client
-geolocator = Nominatim(user_agent="portfolioApp")
 
 def __init__(self):
     self.home_address = {}
@@ -24,8 +21,8 @@ def index(request):
 
 # GET: address then passing it into location PointField()
 def get_address(place):
-    geolocator = Nominatim(user_agent="conrad")
-    geocode = RateLimiter(geolocator.geocode, min_delay_seconds=5)
+    geolocator = place
+    geocode = geolocator
 
     address = None
     try:
@@ -36,7 +33,7 @@ def get_address(place):
             ).raw["address"]
             address["latitude"] = location.latitude
             address["longitude"] = location.longitude
-    except geopyexceptions.GeocoderTimedOut:
+    except:
         # TODO: add 2 retries using tenacity
         print(f"Geocoder timed out for {place}!")
 
@@ -59,7 +56,7 @@ def get_location(latitude, longitude, language="en"):
     # sleep for a second to respect Usage Policy
     time.sleep(1)
     try:
-        return geolocator.reverse(coordinates, language=language)
+        return get_location.reverse(coordinates, language=language)
     except:
         return get_location(latitude, longitude)
 

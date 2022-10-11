@@ -42,6 +42,15 @@ INSTALLED_APPS = [
     'portfolioApp',
 ]
 
+# Providing GOOGLE API KEY for our Map
+LOCATION_FIELD = {
+    'provider.google.api': '//maps.google.com/maps/api/js?sensor=false',
+    'provider.google.api_key': '',
+    'provider.google.api_libraries': '',
+    'provider.google.map.type': 'ROADMAP',
+}
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -76,8 +85,7 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-#GDAL_LIBRARY_PATH = "C:/OSGeo4W//bin/gdal305" 
-#GEOS_LIBRARY_PATH = "C:/OSGeo4W//bin/gdal305" 
+
 
 DATABASES = {
     'default': {
