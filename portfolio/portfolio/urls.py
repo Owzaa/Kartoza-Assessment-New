@@ -25,5 +25,5 @@ urlpatterns = [
     path('sign-up/',signUp,name='signUp'),
     path('all-profiles/',mapDetails,name='mapDetails'),
     path('profile-details/',profileDetails, name="profileDetails"),
-    path('edit-profile/',editProfile, name="ëditProfile"),
+    path('edit-profile/',editProfile, name="profileEdit"),
 ]

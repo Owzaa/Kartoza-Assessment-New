@@ -86,12 +86,12 @@ def login(request):
                     user1 = username
                     if user1.username == 'user':   
                         messages.info(request, f"Logged in as {{username}}")
-                        return render(request,'/profileDetails/')
+                        return render(request,'profiles/profile-page.html')
                 else:
                     messages.error(request, "Invalid username or password")
             else:
                 messages.error(request,"Please kindly check username or password is registered")
-        form = AuthenticationForm()
+            form = AuthenticationForm()
         return render (request=request, template_name="login/login.html")
 
 # Logout-user
@@ -106,7 +106,7 @@ def signOut(request):
 # Sign-up user
 def signUp(request):
     title = "Sign-up User Profile"
-    return render(request,'index.html',
+    return render(request,'login/sign_up.html',
     context={'title':title})
     
 

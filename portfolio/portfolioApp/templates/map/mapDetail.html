@@ -1,26 +1,26 @@
 {% extends 'base.html' %} {%block title%} MAP DETAIL (All User) {% endblock %}
-{% block content%}
+{% block container %}
 
 <div class="container">
-  <h1 class="container-fluid">USER MAP DETAILS</h1>
-
+  <h1 class="container">USER MAP DETAILS</h1>
+<center>
   <div
     id="map_location"
-    style="width: 500px; height: 250px; position: relative"
-    class="leaflet-container leaflet-fade-anim"
+    style="width: 250px; height: 250px; position: absolute"
+    class="leaflet-container leaflet-popup-tip-container leaflet-fade-anim"
     tabindex="0"
   >
     <div
       class="leaflet-google-layer leaflet-top leaflet-left"
       id="_GMapContainer"
-      style="width: 500px; height: 250px; overflow: hidden"
+      style="width: 100vh; height: 100vh; overflow: hidden"
     >
       <div
         style="
           height: 100%;
           width: 100%;
-          position: absolute;
-          top: 0px;
+          position: relative;
+          padding-top: 0px 0px;
           left: 0px;
           background-color: rgb(229, 227, 223);
         "
@@ -57,7 +57,7 @@
                 cursor: pointer;
                 user-select: none;
                 z-index: 1000002;
-                outline-offset: 3px;
+                outline-offset: 15px;
                 right: 0px;
                 bottom: 0px;
                 transform: translateX(100%);
@@ -985,34 +985,7 @@
                     "
                   ></div>
                 </div>
-                <div
-                  style="
-                    position: relative;
-                    padding-right: 6px;
-                    padding-left: 6px;
-                    box-sizing: border-box;
-                    font-family: Roboto, Arial, sans-serif;
-                    font-size: 10px;
-                    color: rgb(0, 0, 0);
-                    white-space: nowrap;
-                    direction: ltr;
-                    text-align: right;
-                    vertical-align: middle;
-                    display: inline-block;
-                  "
-                >
-                  <a
-                    href="https://www.google.com/intl/en-US_US/help/terms_maps.html"
-                    target="_blank"
-                    rel="noopener"
-                    style="
-                      text-decoration: none;
-                      cursor: pointer;
-                      color: rgb(0, 0, 0);
-                    "
-                    >Terms of Use</a
-                  >
-                </div>
+       
               </div>
               <div
                 draggable="false"
@@ -1125,15 +1098,10 @@
       <div class="leaflet-top leaflet-right"></div>
       <div class="leaflet-bottom leaflet-left"></div>
       <div class="leaflet-bottom leaflet-right">
-        <div class="leaflet-control-attribution leaflet-control">
-          <a
-            href="http://leafletjs.com"
-            title="A JS library for interactive maps"
-            >Leaflet</a
-          >
-        </div>
+    
       </div>
     </div>
   </div>
 </div>
+</center>
 {% endblock%}
