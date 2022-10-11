@@ -14,14 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, reverse_lazy
 from portfolioApp.views import homeView,loginView,signOut,signUp,mapDetails
 from profiles.views import profileDetails,editProfile
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', homeView, name='home'),
-    path('login/',loginView, name='loginView'),
-    path('sign-out/',signOut,name='signOut'),
+    path('login/',loginView, name='login'),
+    path('sign-out/',signOut,name='logout'),
     path('sign-up/',signUp,name='signUp'),
     path('all-profiles/',mapDetails,name='mapDetails'),
     path('profile-details/',profileDetails, name="profileDetails"),

@@ -66,16 +66,17 @@ def get_location(latitude, longitude, language="en"):
 """
 PERMISSION 
 """
-@login_required(login_url="loginView/")
+@login_required(login_url='login')
 def mapDetails(request):
     title = "Screen Map Details"   
     return render(request,'map/mapDetail.html',
     context={'title':title})
     
 # User_LoginAuthetication
-def loginView(request):
+def loginView(request):  
+    #Session Activity Log Request for Our Admin Log HISTORY
     if request.user.is_authenticated:
-        return redirect("home/")
+        return redirect("")
     else:
         if request.method == "POST":
             form = AuthenticationForm(request, data= request.POST)
@@ -86,9 +87,7 @@ def loginView(request):
                 if user != None:
                     user1 = UserProfile.objects.get(user=user)
                     if user1.username == 'user':
-                        login(request, user)
-                            #Session Activity Log Request for Our Admin Log HISTORY
-                        request.session['user_id'] = user
+                      
                         messages.info(request, f"Logged in as {{username}}")
                         return render(request,'index.html')
                     else:
@@ -96,7 +95,7 @@ def loginView(request):
             else:
                 messages.error(request,"Please kindly check username or password is registered")
         form = AuthenticationForm()
-    return render (request=request, template_name="admin/")
+    return render (request=request, template_name="login/login.html")
 
 # Logout-user
 def signOut(request):
@@ -106,7 +105,7 @@ def signOut(request):
     except KeyError:
         pass
     messages.info(request,"You've been successfully logged out")
-    return render(request,'admin/')
+    return render(request,'login/login.html')
 
 # Sign-up user
 def signUp(request):
