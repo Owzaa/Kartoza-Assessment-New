@@ -1,35 +1,43 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{%block title%} LOGIN | KARTOZA PORTFOLIO APPLICATION{% endblock %}
 
-{% load static%}
-{% block title %} Kartoza Portfolio - Login  {% endblock %}
-
-{% block title %} Admin Login {% endblock %}
-{% block admin_login %} active {% endblock %}
-{% block css %}
-
-
-{% block body %}
-<form method="POST"> 
-    {% csrf_token %}
-    <div class="container mt-5">
-        <div class="mb-3">
-            <label for="username" class="form-label"><i style="font-weight: bold;">Username</i></label>
-            <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username">
-        </div>
-        <div class="mb-3">
-            <label for="password" class="form-label"><i style="font-weight: bold;">Password</i></label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
-        </div>
-        <br>
-        <input type="submit" value="Submit" class="btn" style="background-color: #4f868c; color: white; font-size: larger; width: 8rem;">
+{% block content%}
+<div class="Container">
+    <div class="HeaderTextContainer">
+        <h1 class="HeaderText">SIGN-IN </h1>
     </div>
+    <br/>
+   
+<form class="form-row" action="login" method="post">
+
+<!--cross site validation security -->
+{% csrf_token %}
+<!--Username form Field-->
+  
+
+<label for="username"> Username: </label>
+<input id="username"placeholder="Type your Username...." size=75 type="text" name="username" maxlength="30" required>
+<br/>
+<br/>
+
+<!--Password Form Field -->
+<label for="Password"> Password: </label>
+<input id="Password" placeholder="Provide your Password...." size=75 width=45 type="Password" name="Password" required>
+<br/>
+<br/>
+
+<!--submit form -->
+<input class="SignInbutton" id="signIn" type="submit" size=35 value="Sign-in">
 </form>
-{% endblock %}
-{% block js %}
-<script>
-   
-    alert("Invalid Credentials. Please try again.");
-    window.location.href = "/admin_login"
-   
-</script>
-{% endblock %}
+<br/>
+
+<!--Call to action when not registered -->
+<code color="noAccountText"> No Account? </code>
+<span class="signupLink">
+<br/> <a href="/sign-up/">
+<bold> sign-up </bold> 
+</a>
+</span>
+
+</div>
+{% endblock%}

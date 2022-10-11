@@ -14,7 +14,7 @@ def __init__(self):
     UserProfile.get_deferred_fields(self)    
 
 # Home == function of index()
-def index(request):
+def homeView(request):
     title= 'Welcome to My Portfolio'
     return render(request,'index.html',
     context={'title':title})
@@ -70,7 +70,7 @@ def mapDetails(request):
 # User_LoginAuthetication
 def loginView(request):
     if request.user.is_authenticated:
-        return redirect("/")
+        return redirect("")
     else:
         if request.method == "POST":
             form = AuthenticationForm(request, data= request.POST)

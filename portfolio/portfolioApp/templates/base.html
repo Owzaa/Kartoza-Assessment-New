@@ -20,16 +20,19 @@
 <ul class="NavLinkContainer">
 
 <li>
-<a class="link" href="{% url 'map' %}">Map</a>    
+<a class="link" href="{% url 'mapDetails' %}">All-Users</a>    
 </li>
 <li>
 <a class="link" href="{% url 'profileDetails' %}">Profile</a>    
 </li>
 <li>
-<a class="link" href="{% url 'admin' %}">login</a>    
+    <a class="link" href="{% url 'profileDetails' %}">Edit-Profile</a>    
+    </li>
+<li>
+<a class="link" href="{% url 'loginView' %}">Login</a>    
 </li>
 <li>
-<a class="link" href="{% url 'logout' %}"> Hi! {{ user.username }} logout</a>    
+<a class="link" href="{% url 'signOut' %}"> Hi! {{ user.username }} Sign-Out</a>    
 </li>
 
 
