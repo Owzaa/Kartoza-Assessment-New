@@ -26,7 +26,7 @@ def get_address(place):
 
     address = None
     try:
-        location = geolocator.geocode(place)
+        location = geocode(place)
         if location is not None:
             address = geolocator.reverse(
                 "{lat}, {lon}".format(lat=location.latitude, lon=location.longitude)
