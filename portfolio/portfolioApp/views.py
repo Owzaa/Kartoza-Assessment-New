@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import HttpResponseRedirect, redirect, render
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
@@ -75,11 +75,7 @@ def mapDetails(request):
     context={'title':title})
     
 # User_LoginAuthetication
-def loginView(request):  
-    #Session Activity Log Request for Our Admin Log HISTORY
-    if request.user.is_authenticated:
-        return redirect("")
-    else:
+def login(request):  
         if request.method == "POST":
             form = AuthenticationForm(request, data= request.POST)
             if form.is_valid():
@@ -87,17 +83,16 @@ def loginView(request):
                 password = form.cleaned_data.get('password')
                 user = authenticate(username=username, password=password)
                 if user != None:
-                    user1 = UserProfile.objects.get(user=user)
-                    if user1.username == 'user':
-                      
+                    user1 = username
+                    if user1.username == 'user':   
                         messages.info(request, f"Logged in as {{username}}")
-                        return render(request,'index.html')
-                    else:
-                        messages.error(request, "Invalid username or password")
+                        return render(request,'/profileDetails/')
+                else:
+                    messages.error(request, "Invalid username or password")
             else:
                 messages.error(request,"Please kindly check username or password is registered")
-            form = AuthenticationForm()
-    return render (request=request, template_name="login/login.html")
+        form = AuthenticationForm()
+        return render (request=request, template_name="login/login.html")
 
 # Logout-user
 def signOut(request):
@@ -107,12 +102,12 @@ def signOut(request):
     except KeyError:
         pass
     messages.info(request,"You've been successfully logged out")
-    return render(request,'login/login.html')
-
+    return HttpResponseRedirect("/login/")
 # Sign-up user
 def signUp(request):
     title = "Sign-up User Profile"
-    return render(request,"login/sign_up.html",context={'title':title})
+    return render(request,'index.html',
+    context={'title':title})
     
 
 

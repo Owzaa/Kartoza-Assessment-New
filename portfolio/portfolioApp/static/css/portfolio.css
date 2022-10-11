@@ -6,10 +6,10 @@
 * {
     justify-content: center;
     margin:auto;
-    padding: 10px 15px;
+    padding: 5px 5px;
     }
     .form-row{
-        display:flexbox;
+        display:flex;
         justify-content:center;
         margin:auto;
     }

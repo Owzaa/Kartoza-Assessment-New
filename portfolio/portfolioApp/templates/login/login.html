@@ -2,13 +2,13 @@
 {%block title%} LOGIN | KARTOZA PORTFOLIO APPLICATION{% endblock %}
 
 {% block content%}
-<div class="Container">
+<div class="container">
     <div class="HeaderTextContainer">
         <h1 class="HeaderText">SIGN-IN </h1>
     </div>
     <br/>
    
-<form class="form-row" action="login" method="post">
+<form class="form-row" action="form" method="post">
 
 <!--cross site validation security -->
 {% csrf_token %}

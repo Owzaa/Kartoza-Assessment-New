@@ -34,12 +34,14 @@
 <li>
 <a class="link" href="{% url 'login' %}">Login</a>    
 </li>
-<li>
-<a class="link" href="{% url 'logout' %}"> Hi! {{ user.username }} Sign-Out</a>    
+<li> 
+
+<a class="link" href="{% url 'logout' %}"> Sign-Out</a>    
 </li>
 
 
 </ul>
+<div class="text-align-left container">Hello! {{ user.username }}</div>
 <!--Ending Links-->
 
 </div>
