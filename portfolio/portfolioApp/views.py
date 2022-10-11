@@ -15,6 +15,8 @@ def __init__(self):
     UserProfile.get_deferred_fields(self)    
 
 # Home == function of index()
+@login_required(login_url='login')
+
 def homeView(request):
     title= 'Welcome to My Portfolio'
     return render(request,'index.html',
@@ -94,7 +96,7 @@ def loginView(request):
                         messages.error(request, "Invalid username or password")
             else:
                 messages.error(request,"Please kindly check username or password is registered")
-        form = AuthenticationForm()
+            form = AuthenticationForm()
     return render (request=request, template_name="login/login.html")
 
 # Logout-user
