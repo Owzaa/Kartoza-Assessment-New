@@ -1,5 +1,5 @@
-# Kartoza-Assessment-New
-# Olwethu Theo Nyondo
+# Kartoza-Assess 
+# User-Location Application
 
 
 		HOW TO INSTALL & RUN THIS APPLICATION
