@@ -1,6 +1,5 @@
-<!DOCTYPE html>
 {% load static %}
-
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -30,7 +29,7 @@
 <a class="link" href="{% url 'profileDetails' %}">Profile</a>    
 </li>
 <li>
-    <a class="link" href="{% url 'home' %}">Edit-Profile</a>    
+    <a class="link" href="{% url 'EditProfile' %}">Edit-Profile</a>    
     </li>
 <li>
 <a class="link" href="{% url 'login' %}">Login</a>    
@@ -42,10 +41,11 @@
 
 
 </ul>
-<div class="text-align-left container pt-5">Hello! {{ user.username }}</div>
 <!--Ending Links-->
 
 </div>
+<div class="text-align-left container pt-5">Hello! {{ user.username }}</div>
+
 </div>
 </center>
 
@@ -55,5 +55,6 @@
 {% block container %}
 {% endblock %}
 
-<script type="application/javascript" src="/static/location_field/leaflet.js"></script></body>
+<script type="application/javascript" src="/static/location_field/leaflet.js"></script>
+</body>
 </html>

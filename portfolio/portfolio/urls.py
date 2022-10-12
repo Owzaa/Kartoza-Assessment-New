@@ -24,6 +24,6 @@ urlpatterns = [
     path('sign-out/',signOut,name='logout'),
     path('sign-up/',signUp,name='signUp'),
     path('all-profiles/',mapDetails,name='mapDetails'),
-    path('profile-details/',profileDetails, name="profileDetails"),
-    path('edit-profile/',editProfile, name="profileEdit"),
+    path('profile/',profileDetails, name="profileDetails"),
+    path('edit-profile/',editProfile, name="EditProfile"),
 ]

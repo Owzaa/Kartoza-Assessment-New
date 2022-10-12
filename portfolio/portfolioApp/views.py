@@ -102,12 +102,11 @@ def signOut(request):
     except KeyError:
         pass
     messages.info(request,"You've been successfully logged out")
-    return HttpResponseRedirect("/login/")
+    return render(request,"login/login.html")
 # Sign-up user
 def signUp(request):
     title = "Sign-up User Profile"
-    return render(request,'login/sign_up.html',
-    context={'title':title})
+    return render(request,'login/sign_up.html',context={'title':title})
     
 
 
