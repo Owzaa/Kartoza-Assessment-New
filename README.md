@@ -8,7 +8,7 @@
 2.Virtual Environment ( cd Environment venv & activate your environment)
 3. cd to Portfolio
 4. Run python manage.py runserver
-----------------------------------------------------
+
 
 REQUIREMENTS:
 
@@ -23,10 +23,8 @@ psycopg2-binary==2.9.4
 six==1.16.0
 sqlparse==0.4.3
 tzdata==2022.4
------------------------------------------------------
 
 CONTAINERS INTEGRATION
-
 dockerfile = contains docker containers setup()
 
 
