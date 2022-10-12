@@ -25,8 +25,9 @@ sqlparse==0.4.3
 tzdata==2022.4
 
 CONTAINERS INTEGRATION
-dockerfile = contains docker containers setup()
-
+Tools:
+Azure CLI 
+dockerfile 
 
 
 Witten by: Olwethu Theo Nyondo
