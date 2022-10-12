@@ -9,6 +9,6 @@ class UserProfile(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)     
     phone_number = models.CharField(max_length=10)
-    address = models.CharField(max_length=255,default="true")
+    address = models.CharField(max_length=255,default="false")
     location =  PlainLocationField(based_fields=['address'], zoom=7)     
     
